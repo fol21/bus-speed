@@ -1,5 +1,5 @@
-#include "dadosOnibus.h"
 #include <stdio.h>
+#include "dadosOnibus.h"
 
 //Arquivo para testar a biblioteca dadosOnibus.h
 //Esse programa pede uma linha e imprime todas as ordens de onibus circulando naquela linha
@@ -18,7 +18,6 @@ int main (void){
 
 
 	lista = infoLinha(linha);
-
 	imprimeListaOnibusApenasOrdem(lista);
-		
+			
 }

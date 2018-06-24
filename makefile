@@ -1,23 +1,38 @@
 
 CC=gcc
-CFLAGS=-I. -I./include
+CFLAGS=-I. -I./include  -ggdb
+
 OBJ_DIR = ./obj
-OBJS=$(wildcard **/*.o)
 SOURCE_DIR=./src
 TEST_DIR=./test
+BIN_DIR=./bin
+OUT_DIR=./out
 
-.PHONY: clean
+OBJS=$(wildcard **/*.o) $(wildcard *.o)
 
-testeOnibus.o: ${TEST_DIR}/testeOnibus.c 
-	$(CC) -c -o ${OBJ_DIR}/$@ $< $(CFLAGS)
+.PHONY: clean dirs all
 
-testeOnibus: ${OBJS}
-	$(CC) -o ${TEST_DIR}/$@ ${OBJS} $(CFLAGS)
+all: clean dirs testeOnibus.o dadosOnibus.o utils.o
+	make testeOnibus
+
+dirs:
+	mkdir out/ obj/
+
+teste.o: ${TEST_DIR}/teste.c 
+	$(CC) -c  -o ${OBJ_DIR}/$@ $< $(CFLAGS)
+
+teste: ${OBJS}
+	$(CC) -o ${TEST_DIR}/$@ ${OBJS}  $(CFLAGS)
+
+
+testeOnibus.o: testeOnibus.c 
+	$(CC) -o ${OBJ_DIR}/$@ -c $< $(CFLAGS)
 
 %.o: ${SOURCE_DIR}/%.c 
-	$(CC) -c -o ${OBJ_DIR}/$@ $< $(CFLAGS)
+	$(CC) -o ${OBJ_DIR}/$@ -c $< $(CFLAGS)
 
-
+testeOnibus : ${OBJS}
+	$(CC) -o ${OUT_DIR}/$@ ${OBJS} $(CFLAGS)
 
 clean:
-	rm -rf **/*.o 
+	rm -rf  *.o **/*.o out/* out/ obj/
