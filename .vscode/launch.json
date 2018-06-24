@@ -9,7 +9,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/test/testeOnibus",
+            "program": "${workspaceFolder}/out/testeOnibus",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

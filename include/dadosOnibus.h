@@ -1,3 +1,6 @@
+#ifndef DADOSONIBUS_H
+#define DADOSONIBUS_H
+
 #define TAMANHO_LINHA 10
 #define TAMANHO_MAX_REQUISICAO 100
 #define TAMANHO_BUFFER 512
@@ -32,3 +35,5 @@ void imprimeListaOnibusApenasOrdem(Onibus* lst);
 
 //Escrevea em longitude e latitude a posicao dos onbibus
 void posicaoOnibus(char* ordemOnibus, double* longitude, double* latitude);
+
+#endif // !DADOSONIBUS_H

@@ -41,6 +41,7 @@
             "browse": {
                 "path": [
                     "${workspaceFolder}",
+                    "${workspaceFolder}/include",
                     "/usr/include/c++/5",
                     "/usr/include/x86_64-linux-gnu/c++/5",
                     "/usr/include/c++/5/backward",
