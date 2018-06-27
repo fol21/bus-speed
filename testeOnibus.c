@@ -10,19 +10,39 @@ int main (void){
 	int bus_count;
 	int t_sec;
 	char** ordemVector;
+	char linha[8];
+	Matrix mx;
+
 
     printf("Digite numero de linhas a ser consultada: ");
 	fflush(stdin);
 	scanf("%d",&bus_count);
 	printf("\n");
+	fflush(stdin);
+
 
     printf("Digite o tempo de monitoramento [segundos]: ");
 	fflush(stdin);
 	scanf("%d",&t_sec);
 	printf("\n");
+	fflush(stdin);
 
-	ordemVector = ordem_vector(bus_count, t_sec);
+	char linhaArray[bus_count][8];
+	ordemVector = ordem_vector(bus_count, linhaArray);
 
+	matrix_constructor(&mx, bus_count, t_sec);
+	populate_matrix_speed(&mx, linhaArray, bus_count, t_sec);
+	printf("\n");
+
+	for(int i = 0 ; i < bus_count ; i++)
+    {
+		printf("%s: ", ordemVector[i]);
+        for (int j = 0; j < t_sec; j++)
+        {
+            printf("%lf ", mx.matrix[i][j]);
+        }
+		printf("\n");
+    }
 
 	// char linha[8];
 	// float velocidade;

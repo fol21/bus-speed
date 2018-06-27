@@ -20,7 +20,20 @@ void matrix_constructor(Matrix* mx, int row, int col)
         mx->matrix[i] = (double*) malloc(col*sizeof(double));
 }
 
-char** ordem_vector(int bcount, int time)
+void populate_matrix_speed(Matrix* mx, char** linhas, int bus_count, int time)
+{
+    for(int i = 0 ; i < time ; i++)
+    {
+        for (int j = 0; j < bus_count; j++)
+        {
+            mx->matrix[j][i] = infoLinha(linhas[j])->velocidade;
+        }
+        delay(1);
+        printf("\n%d seconds have passed", i + 1);
+    }
+}
+
+char** ordem_vector(int bcount, char** linhaArray)
 {
 	char** ordemVector = (char**)malloc(bcount*sizeof(char*));
     char linha[8];
@@ -30,11 +43,14 @@ char** ordem_vector(int bcount, int time)
 	{
 	    printf("Digite linha a ser consultada\n");
 	    fflush(stdin);
-	    scanf("%7[^\n]",linha);
+	    scanf("%s",linha);
+        fflush(stdin);
 
         lista = infoLinha(linha);
+        linhaArray[i] = linha;
 		ordemVector[i] = (char*)malloc(8*sizeof(char));
         ordemVector[i] = lista->ordem;
+        
 	}
     return ordemVector;
 }
