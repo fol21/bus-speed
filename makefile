@@ -9,10 +9,11 @@ BIN_DIR=./bin
 OUT_DIR=./out
 
 OBJS=$(wildcard **/*.o) $(wildcard *.o)
+TEST_OBJS := $(filter-out obj/testeOnibus.o, ${OBJS})
 
 .PHONY: clean dirs all
 
-all: clean dirs testeOnibus.o dadosOnibus.o utils.o
+all: clean dirs testeOnibus.o dadosOnibus.o helpers.o
 	make testeOnibus
 
 dirs:
@@ -21,8 +22,8 @@ dirs:
 teste.o: ${TEST_DIR}/teste.c 
 	$(CC) -c  -o ${OBJ_DIR}/$@ $< $(CFLAGS)
 
-teste: ${OBJS}
-	$(CC) -o ${TEST_DIR}/$@ ${OBJS}  $(CFLAGS)
+teste: ${TEST_OBJS}
+	$(CC) -o ${TEST_DIR}/$@ $^  $(CFLAGS)
 
 
 testeOnibus.o: testeOnibus.c 

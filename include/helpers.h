@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <unistd.h>
+//#include <time.h>
 
 #include <dadosOnibus.h>
 
@@ -18,6 +19,8 @@ typedef struct Matrix
 void delay(int seconds);
 void matrix_constructor(Matrix* mx, int row, int col);
 void populate_matrix_speed(Matrix* mx, char** linhas, int bus_count, int time);
-char** ordem_vector(int bcount, char** linhaArray);
+char* topSpeedOrdem(Matrix* mx, char** ordemVector);
+char* topSpeedOrdemSpeed(Matrix* mx, char** ordemVector, double *topSpeed);
+char** ordem_vector(int bcount);
 
 #endif // !UTILS_H
