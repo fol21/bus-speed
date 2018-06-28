@@ -26,10 +26,12 @@ int main (void){
 	scanf("%d",&t_sec);
 	printf("\n");
 	fflush(stdin);
-
+	
 	//Popula Vetor de Ordems
 	ordemVector = ordem_vector(bus_count);
 
+	printf("\n");
+	
 	// Constri Matriz Ordem-Velocidades
 	matrix_constructor(&mx, bus_count, t_sec);
 	populate_matrix_speed(&mx, ordemVector, bus_count, t_sec);

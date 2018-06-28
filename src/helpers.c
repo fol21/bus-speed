@@ -33,35 +33,23 @@ void populate_matrix_speed(Matrix* mx, char** linhas, int bus_count, int time)
     }
 }
 
-char* topSpeedOrdem(Matrix* mx, char** ordemVector)
-{
-    int index = 0;
-    double topSpeed = 0;
-    for(int i= 0 ; i < mx->row ; i++)
-    {
-        for(int j = 0; j < mx->col;j++)
-        {
-            if(mx->matrix[i][j] > topSpeed)
-                topSpeed = mx->matrix[i][j];
-                index = i;
-        }
-    }
-    return ordemVector[index];
-}
-
 char* topSpeedOrdemSpeed(Matrix* mx, char** ordemVector, double* topSpeed)
 {
     int index = 0;
     *topSpeed = 0;
+    double avgs[mx->row];
     for(int i= 0 ; i < mx->row ; i++)
     {
+        avgs[i] = 0;
         for(int j = 0; j < mx->col;j++)
         {
-            if(mx->matrix[i][j] > *topSpeed)
-            {
-                *topSpeed = mx->matrix[i][j];
-                index = i;
-            }
+            avgs[i] += mx->matrix[i][j];   
+        }
+        avgs[i] = avgs[i]/mx->col; // Faz a média
+        if(avgs[i] > *topSpeed) // Compara as Médias
+        {
+            *topSpeed = avgs[i];
+            index = i;
         }
     }
     return ordemVector[index];
