@@ -21,5 +21,7 @@ void matrix_constructor(Matrix* mx, int row, int col);
 void populate_matrix_speed(Matrix* mx, char** linhas, int bus_count, int time);
 char* topSpeedOrdemSpeed(Matrix* mx, char** ordemVector, double *topSpeed);
 char** ordem_vector(int bcount);
+char* ordemToLinha(char* ordem);
 
-#endif // !UTILS_H
+
+#endif // ! UTILS_H

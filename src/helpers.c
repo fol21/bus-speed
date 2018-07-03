@@ -60,20 +60,34 @@ char** ordem_vector(int bcount)
 	char** ordemVector = (char**)malloc(bcount*sizeof(char*));
     char linha[8];
     Onibus* lista;
+    int scan;
 
 	for(int i=0; i < bcount; i++)
-	{
-	    printf("Digite a ordem do ônibus a ser consultado\n");
-	    fflush(stdin);
-	    scanf("%s",linha);
-        fflush(stdin);
+	{   
+        do
+        {
+	        printf("Digite a ordem do ônibus a ser consultado\n");
+		    while ((getchar()) != '\n'); // Limpa Input buffer
+	        scanf("%s",linha);
+            lista = infoLinha(linha);
 
-        lista = infoLinha(linha);
+        }while(lista == NULL);
+
 		ordemVector[i] = (char*)malloc(8*sizeof(char));
         ordemVector[i] = lista->ordem;
         
 	}
     return ordemVector;
+}
+
+//Converte Ordem para Linha
+char* ordemToLinha(char* ordem)
+{
+    Onibus* lista;
+    lista = infoOnibus(ordem);
+    if(lista != NULL)
+        return lista->linha;
+    else return NULL;
 }
 
 

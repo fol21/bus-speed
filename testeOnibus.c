@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <helpers.h>
 #include <dadosOnibus.h>
 
@@ -12,20 +13,34 @@ int main (void){
 	char** ordemVector;
 	char linha[8];
 	Matrix mx;
+	int scan = 0;
 
 
     printf("Digite numero de onibûs a serem consultados: ");
 	fflush(stdin);
-	scanf("%d",&bus_count);
+	scan = scanf("%d",&bus_count);
+	while (scan !=1)
+	{
+		printf("Escolha um numero inteiro !\n");
+		while ((getchar()) != '\n'); // Limpa Input buffer
+		scan = scanf("%d",&bus_count);
+	}
 	printf("\n");
 	fflush(stdin);
 
 
     printf("Digite o tempo de monitoramento [segundos]: ");
 	fflush(stdin);
-	scanf("%d",&t_sec);
+	scan = scanf("%d",&t_sec);
+	while (scan !=1)
+	{
+		printf("Escolha um numero inteiro !\n");
+		while ((getchar()) != '\n');
+		scan = scanf("%d",&t_sec);
+	}
 	printf("\n");
 	fflush(stdin);
+	
 	
 	//Popula Vetor de Ordems
 	ordemVector = ordem_vector(bus_count);
@@ -53,7 +68,8 @@ int main (void){
 	printf("[TOP SPEED]\n");
 	double speed = 0;
 	char* o = topSpeedOrdemSpeed(&mx, ordemVector, &speed);
-	printf("Linha com maior velodidade: %s -> %lf km/h \n", o ,speed);
+	char* l = ordemToLinha(o);
+	printf("Linha com maior velodidade: %s -> %lf km/h \n", l ,speed);
 
 	return 0;		
 }
